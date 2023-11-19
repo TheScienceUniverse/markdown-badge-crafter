@@ -1,0 +1,18 @@
+{
+	"name": "markdown-badge-crafter"
+	, "version": "1.0.0"
+	, "description": "Badge (shield) crafter for Markdown pages and links"
+	, "main": "index.js"
+	, "scripts": {
+		"start": "node app"
+		, "stop": "killall node"
+		, "test": "npm link"
+		, "clean": "npm stop && rm -rf node_modules"
+		, "restart": "npm stop && npm start"
+		, "reboot": "npm run clean && npm install && npm start"
+	}
+	, "keywords": []
+	, "author": "sayan_shankhari"
+	, "license": "LGPL-3.0-or-later"
+	, "dependencies": {}
+}
