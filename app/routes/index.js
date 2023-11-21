@@ -1,11 +1,11 @@
 const controller = require ("../controllers/");
 
-function get (url_obj) {
+async function get (url_obj) {
 	let response = {};
 
 	switch (url_obj .pathname) {
 		case "/":
-			response = controller .handle_request (url_obj .searchParams);
+			response = await controller .handle_request (url_obj .searchParams);
 			break;
 		default:
 			response ["status"] = 501;

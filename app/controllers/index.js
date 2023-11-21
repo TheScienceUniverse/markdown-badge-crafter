@@ -1,45 +1,40 @@
-function handle_request (request_inputs) {
+const helper = require ("../helpers/");
+const github = require ("../api/github.js");
+const version = require ("./version.js");
+const badge = require ("../views/badge.js");
+
+global .raw_data = "";
+
+async function handle_request (request_inputs) {
 	let response = {};
 
-	if (request_inputs .size > 0) {
-		if (validate_request_inputs (request_inputs)) {
-			response ["status"] = 200;
-			response ["type"] = "text/html";
-			response ["data"] = "Valid Request...Processing";
-		} else {
-			response ["status"] = 400;
-			response ["type"] = "text/html";
-			response ["data"] = "Invalid Request";
-		}
-	} else {
+	request_inputs = helper .re_format_request_inputs (request_inputs);
+
+	if (!helper .validate_request_inputs (request_inputs)) {
 		response ["status"] = 400;
 		response ["type"] = "text/html";
-		response ["data"] = "No Input Given";
+		response ["data"] = "Invalid Request";
+
+		return response;
 	}
+
+	response ["status"] = 200;
+	response ["type"] = "text/html";
+	response ["data"] = "OK";
+
+	// Need to send the following block to process_request function
+	helper .clear_data_buffer ();	// USELESS for quick-refresh
+	await github .fetch (request_inputs);
+	response ["data"] = badge .create (
+		request_inputs
+		, version .get_latest_version (raw_data)
+	);
 
 	return response;
 }
 
-function validate_request_inputs (request_inputs) {
-	let decision = false;
-
-	switch (request_inputs .get ("type")) {
-		case "version":
-			decision = is_valid (request_inputs .get ("user"))
-				&& is_valid (request_inputs .get ("path"))
-				&& is_valid (request_inputs .get ("repo"))
-				&& is_valid (request_inputs .get ("branch"));
-			break;
-		case undefined:
-		default:
-			break;
-	}
-
-	return decision;
-}
-
-function is_valid (variable) {
-	return (variable != undefined && variable != null);
-}
+/*
+async process_request (request_inputs) {}
+*/
 
 module .exports = { handle_request };

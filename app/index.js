@@ -5,8 +5,7 @@ const router = require ("./routes/");
 
 http .createServer (async (req, res) => {
 	const url_obj = new URL (req .url, `http://${req .headers .host}`);
-	let response = router .get (url_obj);
-	console .log (response);
+	let response = await router .get (url_obj);
 
 	res .writeHead (response .status, {
 		'Content-Type': response .type,
