@@ -1,16 +1,43 @@
-function create (request_inputs = {}) {
-	return provide_svg_data (request_inputs, calculate_dimensions ());
+function create (request_inputs = {}, version) {
+	return provide_svg_data ({
+		...request_inputs
+		, "version" : version
+		, "color" : get_branch_color (request_inputs .branch)
+		, "dimensions" : calculate_dimensions ({"branch" : request_inputs .branch, "version" : version})
+	});
 }
 
 module .exports = { create };
 
-function calculate_dimensions () {
+function calculate_dimensions (info = {}) {
 	let shield_dimensions = {};
 
 	return shield_dimensions;
 }
 
-function provide_svg_data (request_inputs = {}, shield_dimensions = {}) {
+function get_branch_color (branch = "master") {
+	let color = "";
+
+	switch (branch) {
+		case "stable":
+			color = "darkgreen";
+			break;
+		case "master":
+		case "main":
+			color = "blue";
+			break;
+		case "dev":
+			color = "red";
+			break;
+		default:
+			color = "gray";
+			break;
+	}
+
+	return color;
+}
+
+function provide_svg_data (svg_info = {}) {
 	return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -43,15 +70,15 @@ function provide_svg_data (request_inputs = {}, shield_dimensions = {}) {
 			font-size="40"
 		>
 			<g id="Part_1">
-				<rect x="50" width="200" height="50" fill="` + request_inputs ["color"] + `"/>
+				<rect x="50" width="200" height="50" fill="` + svg_info ["color"] + `"/>
 				<text fill="white" x="150" y="55%">
-					` + request_inputs ["branch"] + `
+					` + svg_info ["branch"] + `
 				</text>
 			</g>
 			<g id="Part_2">
 				<rect x="250" width="200" height="50" fill="#90e59a"/>
 				<text fill="black" x="350" y="55%">
-					v` + request_inputs ["version"] + `
+					v` + svg_info ["version"] + `
 				</text>
 			</g>
 		</g>

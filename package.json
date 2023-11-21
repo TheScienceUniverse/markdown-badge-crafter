@@ -4,7 +4,7 @@
 	, "description": "Badge (shield) crafter for Markdown pages and links"
 	, "main": "index.js"
 	, "scripts": {
-		"start": "node app"
+		"start": "node app &"
 		, "stop": "killall node"
 		, "test": "npm link"
 		, "clean": "npm stop && rm -rf node_modules"
@@ -13,6 +13,7 @@
 	}
 	, "keywords": []
 	, "author": "sayan_shankhari"
+	, "repository":"https://github.com/TheScienceUniverse/markdown-badge-crafter"
 	, "license": "LGPL-3.0-or-later"
 	, "dependencies": {}
 }
