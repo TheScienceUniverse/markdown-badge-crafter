@@ -1,19 +1,24 @@
 {
-	"name": "markdown-badge-crafter"
-	, "version": "1.1.2"
-	, "description": "Badge (shield) crafter for Markdown pages and links"
-	, "main": "index.js"
-	, "scripts": {
-		"start": "node app &"
-		, "stop": "killall node"
-		, "test": "npm link"
-		, "clean": "npm stop && rm -rf node_modules"
-		, "restart": "npm stop && npm start"
-		, "reboot": "npm run clean && npm install && npm start"
+	"name": "markdown-badge-crafter",
+	"version": "1.1.2",
+	"description": "Badge (shield) crafter for Markdown pages and links",
+	"main": "index.js",
+	"scripts": {
+		"start": "node app &",
+		"stop": "killall node",
+		"dev": "nodemon app/index.js",
+		"test": "npm link",
+		"clean": "npm stop && rm -rf node_modules",
+		"restart": "npm stop && npm start",
+		"reboot": "npm run clean && npm install && npm start"
+	},
+	"keywords": [],
+	"author": "sayan_shankhari",
+	"repository": "https://github.com/TheScienceUniverse/markdown-badge-crafter",
+	"license": "LGPL-3.0-or-later",
+	"dependencies": {
+		"@sayan_shankhari/sem_ver": "^1.0.0",
+		"package.json": "^0.0.0",
+		"serve-favicon": "^2.5.1"
 	}
-	, "keywords": []
-	, "author": "sayan_shankhari"
-	, "repository":"https://github.com/TheScienceUniverse/markdown-badge-crafter"
-	, "license": "LGPL-3.0-or-later"
-	, "dependencies": {}
 }

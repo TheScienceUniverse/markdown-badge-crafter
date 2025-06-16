@@ -1,26 +1,44 @@
-function get_latest_version (raw_data) {
-	const commit_list = JSON .parse (raw_data);
-	let version = "";
+const views = require ("../views");
+const services = require ("../services");
+const semver = require ("@sayan_shankhari/sem_ver");
+const semver_req = require ("@sayan_shankhari/sem_ver/src/models/request");
 
-	for (commit of commit_list) {
-		version = commit ["commit"] ["message"] .split (" ") [0];	// version tag
-		version = version .match (/[^a-zA-Z]*/gi) ;					// version number
-		version = version .filter (arg => arg != '') [0];			// get numbers
 
-		if (version != undefined) {
-			break;
-		}
-	}
+async function handle_request (request) {
+	let response = {};
 
 	if (
-		version == ""
-		|| version == null
-		|| version ==  undefined
+		request .size == 0
 	) {
-		version = "0.0.0";
+		response ["status"] = 200;
+		response ["type"] = "text/html";
+		response ["data"] = `<body>
+			<h2>Please use the following paramerets after default URL</h2>
+			<h3>?type=version&user={Your GitHub Username}&acc={User or Organization Name}&repo={Repository Name}&branch={Branch Name}</h3>
+		</body>`;
+		return response;
 	}
 
-	return version;
+	response .status = 200;
+	response .type = "text/html";
+
+
+	let req_obj = semver_req .create_new_request (
+		task = "generate"
+		, username = request .user
+		, account = request .acc
+		, repository = request .repo
+		, branch = request .branch
+	);
+
+	let semver_response = await semver .gen_sem_ver (req_obj);
+	let model = services .prepare_model ("version", semver_response .data);
+	let view = views .create_view (model);
+
+	response .data = view ?? 'OK';
+
+	return response;
 }
 
-module .exports = { get_latest_version };
+
+module .exports = { handle_request };
