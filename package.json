@@ -17,8 +17,8 @@
 	"repository": "https://github.com/TheScienceUniverse/markdown-badge-crafter",
 	"license": "LGPL-3.0-or-later",
 	"dependencies": {
-		"@sayan_shankhari/sem_ver": "^1.0.0",
-		"package.json": "^0.0.0",
-		"serve-favicon": "^2.5.1"
+		"@sayan_shankhari/sem_ver": "^3.0.0",
+		"dotenv": "^16.5.0",
+		"package.json": "^0.0.0"
 	}
 }

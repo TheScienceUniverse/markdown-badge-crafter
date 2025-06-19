@@ -1,7 +1,6 @@
 const views = require ("../views");
 const services = require ("../services");
 const semver = require ("@sayan_shankhari/sem_ver");
-const semver_req = require ("@sayan_shankhari/sem_ver/src/models/request");
 
 
 async function handle_request (request) {
@@ -23,7 +22,7 @@ async function handle_request (request) {
 	response .type = "text/html";
 
 
-	let req_obj = semver_req .create_new_request (
+	let req_obj = semver .create_new_request (
 		task = "generate"
 		, username = request .user
 		, account = request .acc
@@ -31,8 +30,8 @@ async function handle_request (request) {
 		, branch = request .branch
 	);
 
-	let semver_response = await semver .gen_sem_ver (req_obj);
-	let model = services .prepare_model ("version", semver_response .data);
+	let version = await semver .gen_sem_ver (req_obj);
+	let model = services .prepare_model ("version", version);
 	let view = views .create_view (model);
 
 	response .data = view ?? 'OK';

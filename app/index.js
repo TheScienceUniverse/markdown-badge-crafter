@@ -8,7 +8,14 @@ const middleware = require ("./middleware");
 http .createServer (async (req, res) => {
 	const url_obj = new URL (req .url, `http://${req .headers .host}`);
 	let validation_data = middleware .validate_URL (url_obj);
-	let response = await router .route (validation_data);
+
+	let response = {
+		status : 200
+		, type : "text/plain"
+		, data : "N/A"
+	};
+
+	response = await router .route (validation_data);
 
 	response .length = (
 		response .data != undefined
