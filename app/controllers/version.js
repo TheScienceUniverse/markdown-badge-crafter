@@ -4,23 +4,19 @@ const semver = require ("@sayan_shankhari/sem_ver");
 
 
 async function handle_request (request) {
-	let response = {};
+	let data = "";
 
 	if (
-		request .size == 0
+		0 == request .size
+		|| null == request
+		|| undefined == request
 	) {
-		response ["status"] = 200;
-		response ["type"] = "text/html";
-		response ["data"] = `<body>
+		data = `<body>
 			<h2>Please use the following paramerets after default URL</h2>
 			<h3>?type=version&user={Your GitHub Username}&acc={User or Organization Name}&repo={Repository Name}&branch={Branch Name}</h3>
 		</body>`;
-		return response;
+		return data;
 	}
-
-	response .status = 200;
-	response .type = "text/html";
-
 
 	let req_obj = semver .create_new_request (
 		task = "generate"
@@ -34,9 +30,9 @@ async function handle_request (request) {
 	let model = services .prepare_model ("version", version);
 	let view = views .create_view (model);
 
-	response .data = view ?? 'OK';
+	data = view ?? 'OK';
 
-	return response;
+	return data;
 }
 
 

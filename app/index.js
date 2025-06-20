@@ -9,18 +9,7 @@ http .createServer (async (req, res) => {
 	const url_obj = new URL (req .url, `http://${req .headers .host}`);
 	let validation_data = middleware .validate_URL (url_obj);
 
-	let response = {
-		status : 200
-		, type : "text/plain"
-		, data : "N/A"
-	};
-
-	response = await router .route (validation_data);
-
-	response .length = (
-		response .data != undefined
-		|| response .data != null
-	) ? response .data .toString() .length : 0;
+	let response = await router .route (validation_data);
 
 	res .writeHead (response .status, {
 		'Content-Type': response .type,

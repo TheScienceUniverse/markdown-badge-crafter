@@ -29,6 +29,7 @@ function validate_URL_paths (url_obj) {
 			validation_data .path = "icon";
 			break;
 		default:
+			validation_data .path = "other";
 			validation_data .valid = false;
 			break;
 	}
