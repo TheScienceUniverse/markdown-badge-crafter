@@ -4,25 +4,32 @@ const fs = require ('fs');
 
 
 async function route (request) {
-	let response = {};
+	let response = {
+		status : 200
+		, type : "text/plain"
+		, data : "N/A"
+		, length : 3
+	};
 
 	switch (request .path) {
 		case "root":
-			response .status = 200;
 			response .type = "text/html";
-			response .data = "Okay";
-			response = arrange_handler (request);
+			let ctlr_data = await arrange_handler (request, response);
+			response .data = ctlr_data ?? "Okay";
+			response .length = response .data .length;
 			break;
 		case "icon":
-			response .status = 200;
 			response .type = "image/x-icon";
 			let icon_path = path .join ("./", 'public', 'favicon.ico');
 
 			fs .readFile (icon_path, (err, data) => {
       			if (err) {
 					response .status = 404;
+					response .data = "Favicon Error";
+					response .length = 0;
 				} else {
 					response .data = data;
+					response .length = response .data .length;
 				}
 			});
 			break;
@@ -30,18 +37,21 @@ async function route (request) {
 			response .status = 501;
 			response .type = "text/html";
 			response .data = "Page Not Found";
+			response .length = response .data .length;
 			break;
 	}
+
+	// console .log (request, response);
 
 	return response;
 }
 
-async function arrange_handler (request) {
+async function arrange_handler (request, response) {
 	if (
 		request .valid_path
 		&& request .valid_param
 	) {
-		return controller .handle_request (request);
+		return controller .handle_request (request, response);
 	}
 }
 
