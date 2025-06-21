@@ -19,6 +19,8 @@
 	"dependencies": {
 		"@sayan_shankhari/sem_ver": "^3.0.0",
 		"dotenv": "^16.5.0",
-		"package.json": "^0.0.0"
+		"express": "^5.1.0",
+		"package.json": "^0.0.0",
+		"serverless-http": "^3.2.0"
 	}
 }
