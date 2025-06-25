@@ -1,13 +1,15 @@
-import http from "node:http";
-import https from "node:https";
-import serverless from "serverless-http";
-const config = require ("../../app/config");
-const router = require ("../../app/routes");
-const middleware = require ("../../app/middleware");
+const http = require ("node:http");
+const https  = require ("node:https");
+const serverless = require ("serverless-http");
+
+const config = require ("../../app/config/index.js");
+const middleware = require ("../../app/middleware/index.js");
+const router = require ("../../app/routes/index.js");
 
 
 const app = http .createServer (async (req, res) => {
 	const url_obj = new URL (req .url, `http://${req .headers .host}`);
+
 	let validation_data = middleware .validate_URL (url_obj);
 
 	let response = await router .route (validation_data);

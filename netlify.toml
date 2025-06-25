@@ -1,2 +1,11 @@
 [build]
-	functions = "functions"
+	functions = "netlify/functions"
+
+[dev]
+	base = "netlify/functions"
+
+[[redirects]]
+	from = "/app/*" # Adjust this to match your API endpoint
+	to = "/.netlify/functions/app/:splat" # Redirects to your Netlify Function
+	status = 200
+	force = true

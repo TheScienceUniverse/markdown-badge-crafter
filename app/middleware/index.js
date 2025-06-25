@@ -1,8 +1,10 @@
 const util = require ("../utils");
+const host = require ("../api/host.js");
 
 
 function validate_URL (url_obj) {
-	console .log (url_obj .pathname);
+	// console .log (url_obj .pathname);
+	host .filter_host_URL_prefix (url_obj);
 	let path_validation_data = validate_URL_paths (url_obj);
 	let param_validation_data = validate_URL_params (url_obj);
 
@@ -25,8 +27,17 @@ function validate_URL_paths (url_obj) {
 		case "/":
 			validation_data .path = "root";
 			break;
+		case "/app":
+		case "/app/":
+			validation_data .path = "main";
+			break;
 		case "/favicon.ico":
 			validation_data .path = "icon";
+			break;
+		case "/font":
+		case "/font/":
+		case "/font/Droid_Sans_Mono/DroidSansMono.ttf":
+			validation_data .path = "font";
 			break;
 		default:
 			validation_data .path = "other";
@@ -72,4 +83,4 @@ function validate_URL_params (url_obj) {
 }
 
 
-module .exports = { validate_URL }
+module .exports = { validate_URL };

@@ -13,6 +13,7 @@ async function route (request) {
 
 	switch (request .path) {
 		case "root":
+		case "main":
 			response .type = "text/html";
 			let ctlr_data = await arrange_handler (request, response);
 			response .data = ctlr_data ?? "Okay";
@@ -20,7 +21,7 @@ async function route (request) {
 			break;
 		case "icon":
 			response .type = "image/x-icon";
-			let icon_path = path .join ("./", 'public', 'favicon.ico');
+			var icon_path = path .join ("./", 'public', 'favicon.ico');
 
 			fs .readFile (icon_path, (err, data) => {
       			if (err) {
@@ -33,10 +34,26 @@ async function route (request) {
 				}
 			});
 			break;
+		case "font":
+			response .type = "font/ttf";
+			var font_path = path .join ("./", 'font', 'Droid_Sans_Mono/DroidSansMono.ttf');
+
+			fs .readFile (icon_path, (err, data) => {
+      			if (err) {
+					response .status = 404;
+					response .data = "Font Error";
+					response .length = 0;
+				} else {
+					response .data = data;
+					response .length = response .data .length;
+				}
+			});
+			break;
+		case "other":
 		default:
 			response .status = 501;
 			response .type = "text/html";
-			response .data = "Page Not Found";
+			response .data = "Request Not Implemented";
 			response .length = response .data .length;
 			break;
 	}
