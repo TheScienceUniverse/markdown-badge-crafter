@@ -89,11 +89,10 @@ body:
       label: 🏷️ Node Version
       description: What version of Node are you running?
       options:
-        - 22x (Default)
-        - 20x
-        - 18x
-        - 16x
-        - 14x
+        - 22.x (Default)
+        - 20.x
+        - 18.x
+        - 16.x
       default: 0
     validations:
       required: true
@@ -109,7 +108,7 @@ body:
         - Docker
         - Other (Please specify in description)
   - type: dropdown
-    id: node_version
+    id: version
     attributes:
       label: 🏷️ Version
       description: What version of Markdown Badge Crafter are you running?
@@ -123,7 +122,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: node_version
+    id: usage
     attributes:
       label: 🏷️ Node Version
       description: How are you using Markdown Badge Crafter?

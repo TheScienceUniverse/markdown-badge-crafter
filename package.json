@@ -1,6 +1,6 @@
 {
 	"name": "markdown-badge-crafter",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Badge (shield) crafter for Markdown pages and links",
 	"type": "commonjs",
 	"main": "index.js",
