@@ -1,16 +1,11 @@
-# markdown-badge-crafter
+# ![Badge Logo](./public/logo.svg) Markdown Badge Crafter
+
 Badge (shield) crafter for Markdown pages and links
 
 ___
 
-Sample Query:
-```
-http://127.0.0.1:3000/?type=version&user={Your GitHub Username}&path={User or Organization Name}&repo={Repository Name}&branch={Branch Name}
-```
-
-[![Stable Version](localhost:3000/?type=version&user=sayan&path=thescienceuniverse&repo=markdown-badge-crafter&branch=master)](https://github.com/TheScienceUniverse/markdown-badge-crafter)
-[![Development Version](https://thescienceuniverse.github.io/API/?get=version&branch=dev)](https://github.com/TheScienceUniverse/markdown-badge-crafter)
-[![Node.js CI](https://github.com/TheScienceUniverse/markdown-badge-crafter/actions/workflows/node.js.yml/badge.svg)](https://github.com/TheScienceUniverse/markdown-badge-crafter/actions/workflows/node.js.yml)
+[![Version](https://markdown-badge-crafter.netlify.app/.netlify/functions/app/?type=version&user=SayanShankhari&acc=TheScienceUniverse&repo=markdown-badge-crafter&branch=master)](https://github.com/TheScienceUniverse/markdown-badge-crafter)
+[![NodeJS CI](https://github.com/TheScienceUniverse/markdown-badge-crafter/actions/workflows/node.js.yml/badge.svg)](https://github.com/TheScienceUniverse/markdown-badge-crafter/actions/workflows/node.js.yml)
 [![GitHub Issues](https://img.shields.io/github/issues/TheScienceUniverse/markdown-badge-crafter.svg?style=flat-square&label=Issues&color=d77982)](https://github.com/TheScienceUniverse/markdown-badge-crafter/issues)
 [![Discord](https://img.shields.io/discord/869557815780470834?color=738adb&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/DEYW7vZkm7)
 
@@ -21,6 +16,33 @@ http://127.0.0.1:3000/?type=version&user={Your GitHub Username}&path={User or Or
 
 ## Usage
 
+1. General Query:
+
+- Native:
+
+```
+http://localhost:port/?type=general&prop={Property}&val={Value}
+```
+
+- Remote:
+
+```
+https://markdown-badge-crafter.netlify.app/.netlify/functions/app/?type=general&prop={Property}&val={Value}
+```
+
+2. Semantic Version Query:
+
+- Native:
+
+```
+http://localhost:port/?type=version&user={Your GitHub Username}&acc={Account or Organization Name}&repo={Repository Name}&branch={Branch Name}
+```
+
+- Remote:
+
+```
+https://markdown-badge-crafter.netlify.app/.netlify/functions/app/?type=version&user={Your GitHub Username}&acc={Account or Organization Name}&repo={Repository Name}&branch={Branch Name}
+```
 
 ### Package manager
 

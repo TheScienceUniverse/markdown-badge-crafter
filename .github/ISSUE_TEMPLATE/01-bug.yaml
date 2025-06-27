@@ -1,0 +1,144 @@
+---
+name: Issue (🐞 Bug Report)
+description: File a bug report to help us improve.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+projects: ["markdown-badge-crafter"]
+assignees:
+  - github-username
+body:
+  - type: markdown
+    id: appreciation
+    attributes:
+      value: |
+        🙏 Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: 📨 Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: email@example.com
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 📝 Checklist
+      description: Make sure to add all the information needed to understand the bug so that someone can help. If the info is missing we'll add the 'Needs more information' label and close the issue until there is enough information.
+      options:
+        - label: Can you reproduce the problem in safe mode?
+        - label: Are you running the latest version?
+          required: true
+        - label: Did you check the debugging guide?
+        - label: Are you reporting to the correct repository?
+          required: true
+        - label: Did you perform a cursory search?
+        - label: Is this something you can debug and fix? Send a pull request! Bug fixes and documentation fixes are welcome.
+          required: true
+        - label: Have an idea for a feature? Post the feature request on Product Pains. It has a voting system to surface the important issues. GitHub issues should only be used for bugs.
+        - label: Provide a minimal code snippet example that reproduces the bug.
+          required: true
+        - label: Provide screenshots where appropriate
+        - label: What's the version of compiler you're using?
+        - label: Does this occur on iOS, Android or both?
+        - label: Are you using Mac, Linux or Windows?
+  - type: textarea
+    attributes:
+      label: 📋 Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. In this environment...
+        2. With this config...
+        3. Run '...'
+        4. See error...
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: 📃 Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: textarea
+    attributes:
+      label: ✔️ Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: ❗ Current Behavior
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: 🕉️ Language
+      description: What version of our software are you running?
+      options:
+        - Javascript (Default)
+        - Typescript
+        - Other (Please Specify in description)
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: node_version
+    attributes:
+      label: 🏷️ Node Version
+      description: What version of Node are you running?
+      options:
+        - 22x (Default)
+        - 20x
+        - 18x
+        - 16x
+        - 14x
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: 🖳 What Operating System or Environment are you using?
+      multiple: true
+      options:
+        - Linux
+        - Windows
+        - Mac OSX
+        - Docker
+        - Other (Please specify in description)
+  - type: dropdown
+    id: node_version
+    attributes:
+      label: 🏷️ Version
+      description: What version of Markdown Badge Crafter are you running?
+      options:
+        - 2.0.0 (Beta)
+        - 1.2.2 (Default)
+        - 1.1.2
+        - 1.1.1
+        - 1.0.0
+      default: 1
+    validations:
+      required: true
+  - type: dropdown
+    id: node_version
+    attributes:
+      label: 🏷️ Node Version
+      description: How are you using Markdown Badge Crafter?
+      options:
+        - Web (Default)
+        - CLI
+      default: 0
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 📜 Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/TheScienceUniverse/markdown-badge-crafter/blob/master/.github/CODE_OF_CONDUCT.md).
+      options:
+        - label: 🤝 I agree to follow this project's Code of Conduct
+          required: true
+---
