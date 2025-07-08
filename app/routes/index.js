@@ -16,8 +16,12 @@ async function route (request) {
 		case "main":
 			response .type = "text/html";
 			let ctlr_data = await arrange_handler (request, response);
-			response .data = ctlr_data ?? "Okay";
+			response .data = ctlr_data ?? "OK";
 			response .length = response .data .length;
+
+			if ("OK" != response .data) {
+				response .type = "image/svg+xml; charset=utf-8";
+			}
 			break;
 		case "icon":
 			response .type = "image/x-icon";
